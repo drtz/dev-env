@@ -1,7 +1,8 @@
 ## vim plugins
 ```
 $ ls -1 ~/.vim/bundle
-YouCompleteMe
+# YouCompleteMe
+vim-colors-solarized
 ctrlp.vim
 node
 scss-syntax.vim
