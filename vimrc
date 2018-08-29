@@ -1,23 +1,33 @@
-let g:pathogen_disabled = ['syntastic']
-if !has('gui_running')
-	call add(g:pathogen_disabled, 'YouCompleteMe')
-endif
+" fix clipboard
+set clipboard=unnamed
 
-call pathogen#infect()
-call pathogen#helptags()
+" line numbers
+set number
 
+" ignore files
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*/node_modules/*
 
+" explorer
+let g:netrw_liststyle = 3
+let g:netrw_banner = 0
+
+" default formatting
 set shiftwidth=4
 set tabstop=4
 set expandtab
-autocmd FileType go setlocal shiftwidth=2 tabstop=2 expandtab!
+autocmd FileType go setlocal shiftwidth=4 tabstop=4 expandtab!
 autocmd FileType javascript setlocal shiftwidth=2 tabstop=2
 autocmd FileType html setlocal shiftwidth=2 tabstop=2
 autocmd FileType hbs setlocal shiftwidth=2 tabstop=2
 autocmd FileType css setlocal shiftwidth=2 tabstop=2
 autocmd FileType scss setlocal shiftwidth=2 tabstop=2
 autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
+
+" completion
+set completeopt=longest,menuone
+let g:SuperTabDefaultCompletionType = "<c-x><c-o>"
+"autocmd FileType php setlocal omnifunc=phpcomplete_extended#CompletePHP
+au FileType php set omnifunc=phpcomplete#CompletePHP
 
 set smartindent
 set hlsearch
@@ -45,6 +55,7 @@ nnoremap <C-H> <C-W><C-H>
 " Command line mappings
 :noremap <F1> :!grunt build<CR> 
 
+set background=dark
 colorscheme koehler
 
 set splitbelow
@@ -58,6 +69,10 @@ let g:go_highlight_functions = 1
 let g:go_highlight_methods = 1
 let g:go_highlight_structs = 1
 let g:go_highlight_operators = 1
+
+" go lint
+set rtp+=$GOPATH/src/github.com/golang/lint/misc/vim
+autocmd BufWritePost,FileWritePost *.go execute 'Lint' | cwindow
 
 " vim-jsx
 let g:jsx_ext_required = 0
